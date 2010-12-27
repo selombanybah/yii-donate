@@ -4,7 +4,7 @@ ex.
 <?php
 --view--
 
-  $this->widget('application.extensions.donate.Donate.php', 
+  $this->widget('application.extensions.donate.Donate', 
  		array(
  		 'email',   //your paypal email address
 		 'item',    // the description of what the donation is going for

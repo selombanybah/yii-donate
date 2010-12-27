@@ -17,11 +17,19 @@ class Donate extends CWidget
 	public $quantity;
 	public $currency='USD';
 	public $amt;
+	public $rid='5413099';
 	protected $form;
+	protected $assets; 
         
        
     function init()
      {
+	   if($this->assets===null)
+        {
+            $file=dirname(__FILE__).DIRECTORY_SEPARATOR.'assets';
+            $this->assets=Yii::app()->getAssetManager()->publish($file);
+        }
+	
 	switch($this->type)
 	{
 	    case 'paypal':
@@ -33,7 +41,8 @@ class Donate extends CWidget
 		<input type="hidden" name="item_name" value="'.$this->item.'">
 		<input type="hidden" name="currency_code" value="'.$this->currency.'">
 		<input type="hidden" name="amount" value="'.$this->amt.'">
-		<input type="image" src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
+		<input type="image" src="'.$this->assets.'/button_paypal.gif'
+.'" border="0" name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
 		</form>
 		</div>';
 	    break;
@@ -50,7 +59,7 @@ class Donate extends CWidget
 		<input type="hidden" name="ap_returnurl" value=""/>
 		<input type="hidden" name="ap_currency" value="'. $this->currency.'"/>
 		<label>'. $this->currency .' <input type="text" name="'.$this->amt.'" value="'.$this->amt.'" size="3" /></label><br/>
-		<input type="image" name="ap_image" src="<?php print $this->uri; ?>/images/alertpay_logo.png" width="90" height="60" alt="Donate with AlertPay" style="border: none; background: none;" />
+		<input type="image" name="ap_image" src="'.$this->assets.'/alertpay_logo.png" width="90" height="60" alt="Donate with AlertPay" style="border: none; background: none;" />
 		</form>
 		</div>';
 	    break;
@@ -61,12 +70,12 @@ class Donate extends CWidget
 		<form action="https://www.moneybookers.com/app/payment.pl" method="post" target="_blank" class="payment_form moneybookers" >
 		<input type="hidden" name="pay_to_email" value="'. $this->email.'" />
 		<input type="hidden" name="language" value="'.$this->language.'" />
-		<input type="hidden" name="rid" value="5413099" />
+		<input type="hidden" name="rid" value="'.$this->rid.'" />
 		<label >'.$this->currency.' <input type="text" name="amount" value="'. $this->amt.'" size="3" /></label><br/>
 		<input type="hidden" name="currency" value="'. $this->currency .'" />
 		<input type="hidden" name="detail1_description" value="'.$this->code .'" />
 		<input type="hidden" name="detail1_text" value="'.$this->item .'" />
-		<input type="image" src="<?php print $this->uri; ?>/images/mb_orange_donate_with.gif" width="90" height="60" border="0" name="submit" alt="Donate with Moneybookers" style="border: none; background: none;" />
+		<input type="image" src="'.$this->assets.'/mb_orange_donate_with.gif" width="90" height="60" border="0" name="submit" alt="Donate with Moneybookers" style="border: none; background: none;" />
 		</form>
 		</div>';
 	    break;
@@ -78,4 +87,11 @@ class Donate extends CWidget
 	echo $this->form;
     }
     
+    protected function registerClientScript()
+    {
+        // ...publish CSS or JavaScript file here...
+        $cs=Yii::app()->clientScript;
+        $cs->registerCssFile($this->assets.'/donate.css');
+    }
+
 }
