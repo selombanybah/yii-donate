@@ -1,7 +1,8 @@
 #usage of yii-donate
 = Introduction =
-place in protected.extensions.donate directory
-place code below in your view
+place in protected.extensions.donate directory.
+
+Place code below in your view.
 = Details =
 {{{
 <?php
