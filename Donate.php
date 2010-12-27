@@ -29,7 +29,7 @@ class Donate extends CWidget
 		<div id="donate_paypal" class="donate">
 		<form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 		<input type="hidden" name="cmd" value="_xclick">
-		<input type="hidden" name="business" value="'.$email.'">
+		<input type="hidden" name="business" value="'.$this->email.'">
 		<input type="hidden" name="item_name" value="'.$this->item.'">
 		<input type="hidden" name="currency_code" value="'.$this->currency.'">
 		<input type="hidden" name="amount" value="'.$this->amt.'">
@@ -48,8 +48,8 @@ class Donate extends CWidget
 		<input type="hidden" name="ap_itemcode" value="'. $ithis->code .'"/> 
 		<input type="hidden" name="ap_quantity" value="'.$this->quantity.'"/>
 		<input type="hidden" name="ap_returnurl" value=""/>
-		<input type="hidden" name="ap_currency" value="<?php print.' $this->currency.'; ?>"/>
-		<label>' $this->currency.' <input type="text" name="'.$this->amt.'" value="'.$this->amt.'" size="3" /></label><br/>
+		<input type="hidden" name="ap_currency" value="'. $this->currency.'"/>
+		<label>'. $this->currency .' <input type="text" name="'.$this->amt.'" value="'.$this->amt.'" size="3" /></label><br/>
 		<input type="image" name="ap_image" src="<?php print $this->uri; ?>/images/alertpay_logo.png" width="90" height="60" alt="Donate with AlertPay" style="border: none; background: none;" />
 		</form>
 		</div>';
