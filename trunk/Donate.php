@@ -11,8 +11,8 @@ class Donate extends CWidget
 {
 	public $email;
 	public $item='A Good Cause';
-	public $currency;
-	public $amt='USD';
+	public $currency='USD';
+	public $amt;
 	protected $form;
         
        
