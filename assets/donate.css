@@ -1,0 +1,25 @@
+#paypal_logo
+{
+background: url(paypal_logo.png) no-repeat;
+height: 45px;
+width: 80px;
+}
+
+#alertpay_logo
+{
+background: url(alertpay_logo.png) no-repeat;
+height: 60px;
+width: 90px;
+}
+
+#moneybookers_logo
+{
+background: url(moneybookers_logo.png) no-repeat;
+height: 42px;
+width: 75px;
+}
+
+.donate_logo
+{
+
+}
